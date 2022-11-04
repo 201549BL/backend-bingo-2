@@ -186,6 +186,7 @@ app.post("/auth/:rid", async (req, res) => {
   res.cookie(`${rid}`, token, {
     httpOnly: true,
     secure: process.env.NODE_ENV !== "development",
+    sameSite: "none",
   });
 
   return res.status(200).json({ nickname });
