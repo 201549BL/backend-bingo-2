@@ -82,7 +82,7 @@ app.use(
   })
 );
 app.use(json());
-app.use(cookieParser("secret"));
+app.use(cookieParser(process.env.COOKIE_SECRET));
 
 io.on("connection", (socket) => {
   console.log(`new connection: ${socket.id}`);
@@ -105,8 +105,6 @@ io.on("connection", (socket) => {
     console.log(`connection closed: ${reason}`);
   });
 });
-
-// TODO: REQUIRE AUTH ***********
 
 const requireAuth = (req, res, next) => {
   const { rid } = req.params;
